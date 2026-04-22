@@ -1,0 +1,22 @@
+# Build results
+bin/
+obj/
+
+# Screenshots folder
+Screenshots/
+
+# Applied jobs data
+applied_jobs.json
+
+# User settings
+appsettings.json
+
+# Visual Studio
+.vs/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+# Chrome driver
+chromedriver.exe
