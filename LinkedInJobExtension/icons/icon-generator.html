@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Icon Generator - LinkedIn Job Automation</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 40px;
+            background: #f5f5f5;
+            text-align: center;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #0077B5;
+        }
+        canvas {
+            border: 2px solid #ddd;
+            margin: 20px 0;
+            border-radius: 10px;
+        }
+        button {
+            background: #0077B5;
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 5px;
+        }
+        button:hover {
+            background: #005885;
+        }
+        .instructions {
+            background: #f0f8ff;
+            padding: 20px;
+            border-radius: 5px;
+            margin-top: 20px;
+            text-align: left;
+        }
+        .instructions ol {
+            padding-left: 20px;
+        }
+        .instructions li {
+            margin: 10px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🎨 LinkedIn İş Otomasyonu - Icon Generator</h1>
+        <p>Chrome Extension için gerekli icon dosyalarını oluşturun</p>
+        
+        <div>
+            <h3>128x128 Icon</h3>
+            <canvas id="canvas128" width="128" height="128"></canvas>
+            <br>
+            <button onclick="downloadIcon(128)">📥 icon128.png İndir</button>
+        </div>
+        
+        <div>
+            <h3>48x48 Icon</h3>
+            <canvas id="canvas48" width="48" height="48"></canvas>
+            <br>
+            <button onclick="downloadIcon(48)">📥 icon48.png İndir</button>
+        </div>
+        
+        <div>
+            <h3>16x16 Icon</h3>
+            <canvas id="canvas16" width="16" height="16"></canvas>
+            <br>
+            <button onclick="downloadIcon(16)">📥 icon16.png İndir</button>
+        </div>
+
+        <div class="instructions">
+            <h3>📝 Kullanım Talimatları:</h3>
+            <ol>
+                <li>Bu sayfayı tarayıcınızda açın</li>
+                <li>Her üç icon için de "İndir" butonuna tıklayın</li>
+                <li>İndirilen PNG dosyalarını <code>LinkedInJobExtension/icons/</code> klasörüne yerleştirin</li>
+                <li>Chrome Extension'ı yükleyin veya yeniden yükleyin</li>
+            </ol>
+            <p><strong>Not:</strong> Daha profesyonel görünüm için Photoshop, Figma veya Canva kullanabilirsiniz.</p>
+        </div>
+    </div>
+
+    <script>
+        function drawIcon(canvas) {
+            const ctx = canvas.getContext('2d');
+            const size = canvas.width;
+            const scale = size / 128;
+
+            // Clear canvas
+            ctx.clearRect(0, 0, size, size);
+
+            // Background gradient
+            const gradient = ctx.createLinearGradient(0, 0, size, size);
+            gradient.addColorStop(0, '#0077B5');
+            gradient.addColorStop(1, '#00A0DC');
+            
+            // Rounded rectangle background
+            const radius = 20 * scale;
+            ctx.fillStyle = gradient;
+            ctx.beginPath();
+            ctx.roundRect(0, 0, size, size, radius);
+            ctx.fill();
+
+            // LinkedIn 'in' icon
+            ctx.fillStyle = 'white';
+            
+            // 'i' dot
+            ctx.fillRect(30 * scale, 60 * scale, 18 * scale, 12 * scale);
+            
+            // 'i' vertical line
+            ctx.fillRect(30 * scale, 75 * scale, 18 * scale, 40 * scale);
+            
+            // 'n' shape
+            ctx.fillRect(55 * scale, 75 * scale, 18 * scale, 40 * scale);
+            ctx.fillRect(78 * scale, 85 * scale, 15 * scale, 30 * scale);
+            ctx.fillRect(93 * scale, 75 * scale, 18 * scale, 40 * scale);
+            
+            // Connection
+            ctx.beginPath();
+            ctx.arc(85 * scale, 85 * scale, 8 * scale, Math.PI, 0);
+            ctx.fill();
+
+            // Automation gear icon (top right)
+            if (size >= 48) {
+                // Outer circle (gold)
+                ctx.fillStyle = '#FFD700';
+                ctx.strokeStyle = 'white';
+                ctx.lineWidth = 3 * scale;
+                ctx.beginPath();
+                ctx.arc(100 * scale, 35 * scale, 22 * scale, 0, 2 * Math.PI);
+                ctx.fill();
+                ctx.stroke();
+
+                // Inner circle (white)
+                ctx.fillStyle = 'white';
+                ctx.beginPath();
+                ctx.arc(100 * scale, 35 * scale, 10 * scale, 0, 2 * Math.PI);
+                ctx.fill();
+
+                // Gear teeth
+                ctx.fillStyle = '#FFD700';
+                const teeth = 6;
+                for (let i = 0; i < teeth; i++) {
+                    const angle = (i / teeth) * 2 * Math.PI;
+                    const x = 100 * scale + Math.cos(angle) * 18 * scale;
+                    const y = 35 * scale + Math.sin(angle) * 18 * scale;
+                    ctx.fillRect(x - 2 * scale, y - 4 * scale, 4 * scale, 8 * scale);
+                }
+            }
+        }
+
+        function downloadIcon(size) {
+            const canvas = document.getElementById(`canvas${size}`);
+            const link = document.createElement('a');
+            link.download = `icon${size}.png`;
+            link.href = canvas.toDataURL('image/png');
+            link.click();
+        }
+
+        // Draw all icons on page load
+        window.onload = function() {
+            drawIcon(document.getElementById('canvas128'));
+            drawIcon(document.getElementById('canvas48'));
+            drawIcon(document.getElementById('canvas16'));
+        };
+    </script>
+</body>
+</html>

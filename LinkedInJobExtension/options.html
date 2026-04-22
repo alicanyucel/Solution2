@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gelişmiş Ayarlar - LinkedIn İş Otomasyonu</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 20px;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #0077B5 0%, #00a0dc 100%);
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 28px;
+            margin-bottom: 10px;
+        }
+
+        .content {
+            padding: 30px;
+        }
+
+        .section {
+            margin-bottom: 30px;
+            padding-bottom: 30px;
+            border-bottom: 1px solid #e9ecef;
+        }
+
+        .section:last-child {
+            border-bottom: none;
+        }
+
+        .section h2 {
+            font-size: 20px;
+            margin-bottom: 15px;
+            color: #0077B5;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: #495057;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #e9ecef;
+            border-radius: 8px;
+            font-size: 14px;
+            transition: border-color 0.3s;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #0077B5;
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        .checkbox-group {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+
+        .checkbox-group input[type="checkbox"] {
+            width: 20px;
+            height: 20px;
+            cursor: pointer;
+            accent-color: #0077B5;
+        }
+
+        .checkbox-group label {
+            cursor: pointer;
+            color: #495057;
+        }
+
+        .help-text {
+            font-size: 12px;
+            color: #6c757d;
+            margin-top: 5px;
+        }
+
+        .button-group {
+            display: flex;
+            gap: 15px;
+            margin-top: 30px;
+        }
+
+        .btn {
+            flex: 1;
+            padding: 14px 24px;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #0077B5 0%, #00a0dc 100%);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 119, 181, 0.4);
+        }
+
+        .btn-secondary {
+            background: #6c757d;
+            color: white;
+        }
+
+        .btn-secondary:hover {
+            background: #5a6268;
+        }
+
+        .btn-danger {
+            background: #dc3545;
+            color: white;
+        }
+
+        .btn-danger:hover {
+            background: #c82333;
+        }
+
+        .success-message {
+            background: #d4edda;
+            color: #155724;
+            padding: 12px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            display: none;
+        }
+
+        .stats-box {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 15px;
+        }
+
+        .stat-item {
+            text-align: center;
+            padding: 15px;
+            background: white;
+            border-radius: 8px;
+        }
+
+        .stat-value {
+            font-size: 32px;
+            font-weight: 700;
+            color: #0077B5;
+        }
+
+        .stat-label {
+            font-size: 12px;
+            color: #6c757d;
+            margin-top: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>⚙️ Gelişmiş Ayarlar</h1>
+            <p>LinkedIn İş Başvuru Otomasyonu</p>
+        </div>
+
+        <div class="content">
+            <div id="successMessage" class="success-message">
+                ✅ Ayarlar başarıyla kaydedildi!
+            </div>
+
+            <div class="section">
+                <h2>📊 İstatistikler</h2>
+                <div class="stats-box">
+                    <div class="stats-grid">
+                        <div class="stat-item">
+                            <div class="stat-value" id="totalApplications">0</div>
+                            <div class="stat-label">Toplam Başvuru</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-value" id="successRate">0%</div>
+                            <div class="stat-label">Başarı Oranı</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-value" id="savedJobs">0</div>
+                            <div class="stat-label">Kaydedilen İş</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section">
+                <h2>🔍 Arama Filtreleri</h2>
+                
+                <div class="form-group">
+                    <label for="jobType">İş Tipi:</label>
+                    <select id="jobType">
+                        <option value="">Tümü</option>
+                        <option value="full-time">Tam Zamanlı</option>
+                        <option value="part-time">Yarı Zamanlı</option>
+                        <option value="contract">Sözleşmeli</option>
+                        <option value="internship">Staj</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="experienceLevel">Deneyim Seviyesi:</label>
+                    <select id="experienceLevel">
+                        <option value="">Tümü</option>
+                        <option value="internship">Staj</option>
+                        <option value="entry">Giriş Seviyesi</option>
+                        <option value="associate">Orta Seviye</option>
+                        <option value="mid-senior">Kıdemli</option>
+                        <option value="director">Direktör</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="excludeKeywords">Hariç Tutulacak Kelimeler (virgülle ayırın):</label>
+                    <input type="text" id="excludeKeywords" placeholder="örn: senior, manager">
+                    <div class="help-text">Bu kelimeleri içeren iş ilanları atlanacaktır</div>
+                </div>
+            </div>
+
+            <div class="section">
+                <h2>⚡ Performans Ayarları</h2>
+                
+                <div class="form-group">
+                    <label for="delayBetweenApplications">Başvurular Arası Bekleme Süresi (saniye):</label>
+                    <input type="number" id="delayBetweenApplications" value="3" min="1" max="10">
+                    <div class="help-text">Daha yüksek değerler daha güvenlidir</div>
+                </div>
+
+                <div class="checkbox-group">
+                    <input type="checkbox" id="randomDelay" checked>
+                    <label for="randomDelay">Rastgele bekleme süresi ekle (daha doğal)</label>
+                </div>
+
+                <div class="checkbox-group">
+                    <input type="checkbox" id="skipApplied" checked>
+                    <label for="skipApplied">Daha önce başvurduğum işleri atla</label>
+                </div>
+            </div>
+
+            <div class="section">
+                <h2>🔔 Bildirimler</h2>
+                
+                <div class="checkbox-group">
+                    <input type="checkbox" id="notifyOnSuccess" checked>
+                    <label for="notifyOnSuccess">Başarılı başvurularda bildirim gönder</label>
+                </div>
+
+                <div class="checkbox-group">
+                    <input type="checkbox" id="notifyOnComplete" checked>
+                    <label for="notifyOnComplete">Otomasyon tamamlandığında bildirim gönder</label>
+                </div>
+            </div>
+
+            <div class="section">
+                <h2>💾 Veri Yönetimi</h2>
+                
+                <div class="form-group">
+                    <label>Kaydedilen Başvurular:</label>
+                    <div class="button-group">
+                        <button id="exportBtn" class="btn btn-secondary">📥 Dışa Aktar (JSON)</button>
+                        <button id="clearDataBtn" class="btn btn-danger">🗑️ Tüm Verileri Temizle</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="button-group">
+                <button id="saveBtn" class="btn btn-primary">💾 Ayarları Kaydet</button>
+                <button id="resetBtn" class="btn btn-secondary">🔄 Varsayılana Dön</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="options.js"></script>
+</body>
+</html>

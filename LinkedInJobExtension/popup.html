@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LinkedIn İş Başvuru Otomasyonu</title>
+    <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🎯 LinkedIn İş Otomasyonu</h1>
+            <p class="subtitle">Otomatik başvuru yapın</p>
+        </div>
+
+        <div class="status-section" id="statusSection">
+            <div class="status-badge" id="statusBadge">
+                <span id="statusIcon">⚪</span>
+                <span id="statusText">Hazır</span>
+            </div>
+        </div>
+
+        <div class="settings-section">
+            <div class="input-group">
+                <label for="keywords">🔍 Aranacak Pozisyon:</label>
+                <input type="text" id="keywords" placeholder="örn: Software Developer">
+            </div>
+
+            <div class="input-group">
+                <label for="location">📍 Lokasyon:</label>
+                <input type="text" id="location" placeholder="örn: Istanbul, Turkey">
+            </div>
+
+            <div class="input-group">
+                <label for="maxApplications">📊 Maksimum Başvuru:</label>
+                <input type="number" id="maxApplications" value="10" min="1" max="50">
+            </div>
+
+            <div class="checkbox-group">
+                <label>
+                    <input type="checkbox" id="easyApplyOnly" checked>
+                    <span>Sadece Easy Apply</span>
+                </label>
+            </div>
+
+            <div class="checkbox-group">
+                <label>
+                    <input type="checkbox" id="autoScroll" checked>
+                    <span>Otomatik Scroll</span>
+                </label>
+            </div>
+        </div>
+
+        <div class="stats-section" id="statsSection" style="display: none;">
+            <h3>📈 İstatistikler</h3>
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <span class="stat-label">Bulunan İlanlar:</span>
+                    <span class="stat-value" id="foundJobs">0</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-label">Başarılı Başvurular:</span>
+                    <span class="stat-value success" id="successfulApplications">0</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-label">Başarısız:</span>
+                    <span class="stat-value failed" id="failedApplications">0</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="actions">
+            <button id="startBtn" class="btn btn-primary">
+                <span id="btnIcon">▶️</span>
+                <span id="btnText">Otomasyonu Başlat</span>
+            </button>
+            <button id="stopBtn" class="btn btn-danger" style="display: none;">
+                <span>⏹️</span>
+                <span>Durdur</span>
+            </button>
+        </div>
+
+        <div class="log-section">
+            <h3>📋 İşlem Geçmişi</h3>
+            <div id="logContainer" class="log-container">
+                <p class="log-empty">Henüz işlem yapılmadı</p>
+            </div>
+        </div>
+
+        <div class="footer">
+            <button id="settingsBtn" class="btn-link">⚙️ Gelişmiş Ayarlar</button>
+            <button id="clearLogsBtn" class="btn-link">🗑️ Geçmişi Temizle</button>
+        </div>
+    </div>
+
+    <script src="popup.js"></script>
+</body>
+</html>

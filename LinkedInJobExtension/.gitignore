@@ -1,0 +1,34 @@
+# Chrome Extension specific
+*.pem
+*.crx
+*.zip
+
+# OS files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Logs
+*.log
+npm-debug.log*
+
+# User data (don't commit user settings)
+storage.json
+
+# Build files
+dist/
+build/
+
+# Node modules (if using build tools)
+node_modules/
+
+# Screenshots and test files
+screenshots/
+test-data/
